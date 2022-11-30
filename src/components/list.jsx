@@ -4,6 +4,13 @@ const List= () => {
     const [tarefa, setTarefa] = useState("");
     const [itemsList, setItemsList] = useState([]);
 
+    useEffect(() => {
+        if (localStorage.getItem("tarefas")) {
+            const tarefas = JSON.parse(localStorage.getItem("tarefas"))
+            setItemsList(tarefas)
+        }
+    }, [])
+
     const capturarInput = (e) => {
         const inputTarefa = e.target.value;
         setTarefa(inputTarefa);
