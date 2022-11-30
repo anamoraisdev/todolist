@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 
 const List= () => {
-   const [tarefa, setTarefa] = useState("");
-   const [itemsList, setItemsList] = useState([]);
+    const [tarefa, setTarefa] = useState("");
+    const [itemsList, setItemsList] = useState([]);
 
     const capturarInput = (e) => {
         const inputTarefa = e.target.value;
         setTarefa(inputTarefa);
     }
+
+    const addItemsList = (e) => {
+        e.preventDefault(); 
+        setItemsList([...itemsList, { texto: tarefa, concluido: false }]);
+        localStorage.setItem("tarefas", JSON.stringify([...itemsList, { texto: tarefa, concluido: false }]))
+        setTarefa("");
+    }
+
    return(
         <div className="bg-gradient-to-r from-gray-900 to-gray-700 w-screen h-screen flex justify-center items-center flex-col">
             <form onSubmit={addItemsList} className="bg-gray-100 w-[65%]">
