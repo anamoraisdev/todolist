@@ -28,6 +28,13 @@ const List= () => {
         setItemsList(newItems)
         localStorage.setItem("tarefas", JSON.stringify(newItems))
     }
+    const mudarParaInput = (texto, index) => {
+        const tarefa = document.getElementById(`tarefa-${index}`)
+        tarefa.innerHTML = `<input id='tarefa-input' value=${texto} type='text'/>`
+        const input = document.getElementById("tarefa-input")
+        input.addEventListener("keydown", (evento) => atualizar(evento, index))
+    }
+
    return(
         <div className="bg-gradient-to-r from-gray-900 to-gray-700 w-screen h-screen flex justify-center items-center flex-col">
             <form onSubmit={addItemsList} className="bg-gray-100 w-[65%]">
