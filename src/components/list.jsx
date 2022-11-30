@@ -16,6 +16,12 @@ const List= () => {
         setTarefa("");
     }
 
+    const removeItemsList = (index) => {
+        const newItems = [...itemsList]
+        newItems.splice(index, 1)
+        setItemsList(newItems)
+        localStorage.setItem("tarefas", JSON.stringify(newItems))
+    }
    return(
         <div className="bg-gradient-to-r from-gray-900 to-gray-700 w-screen h-screen flex justify-center items-center flex-col">
             <form onSubmit={addItemsList} className="bg-gray-100 w-[65%]">
