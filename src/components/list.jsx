@@ -34,7 +34,16 @@ const List= () => {
         const input = document.getElementById("tarefa-input")
         input.addEventListener("keydown", (evento) => atualizar(evento, index))
     }
-
+    const atualizar = (evento, index) => {
+        console.log(evento.code)
+        if (evento.code === "Enter") {
+            const newItems = [...itemsList]
+            newItems[index].texto = evento.target.value
+            setItemsList(newItems)
+            localStorage.setItem("tarefas", JSON.stringify(newItems))
+            window.location.reload()
+        }
+    }
    return(
         <div className="bg-gradient-to-r from-gray-900 to-gray-700 w-screen h-screen flex justify-center items-center flex-col">
             <form onSubmit={addItemsList} className="bg-gray-100 w-[65%]">
